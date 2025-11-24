@@ -82,6 +82,25 @@
             background-color: #7bed9f;
             box-shadow: 0 0 15px rgba(46, 213, 115, 0.5);
         }
+
+        #btn-reset {
+            background: none;
+            border: none;
+            color: #a5a5c5;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 1rem;
+            padding: 0.5rem;
+            box-shadow: none;
+        }
+
+        #btn-reset:hover {
+            color: white;
+            background: none;
+            box-shadow: none;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 
@@ -95,6 +114,7 @@
             <button id="btn-decrease">Decrease</button>
             <button id="btn-increase">Increase</button>
         </div>
+        <button id="btn-reset">Reset</button>
         <div style="margin-top: 2rem; color: #a5a5c5;">
             <h3>History</h3>
             <div id="history-list">Start</div>
@@ -109,6 +129,7 @@
         const displayElement = document.getElementById('count-display');
         const increaseBtn = document.getElementById('btn-increase');
         const decreaseBtn = document.getElementById('btn-decrease');
+        const resetBtn = document.getElementById('btn-reset');
 
         // 2. Define our state (data)
         // Try to get the saved number. If it doesn't exist (null), use 0.
@@ -121,6 +142,7 @@
         const historyElement = document.getElementById('history-list');
 
         // 3. Define the functions (actions)
+
         function updateHistory() {
             history.push(count);                            // 1. Add the current count to the end of the list
             historyElement.innerText = history.join(' → '); // 2. Show it on screen, separated by arrows
@@ -157,10 +179,25 @@
             localStorage.setItem('mySavedCount', count); // Save the new count
         }
 
+        function resetApp() {
+            // 1. Reset variables
+            count = 0;
+            history = [];
+
+            // 2. Clear storage
+            localStorage.removeItem('mySavedCount');
+            localStorage.removeItem('mySavedHistory');
+
+            // 3. Update screen
+            updateDisplay();
+            historyElement.innerText = 'Start'; // Reset text
+        }
+
         // 4. Add Event Listeners (waiting for user input)
         // When the user clicks a button, run the specific function.
         increaseBtn.addEventListener('click', increase);
         decreaseBtn.addEventListener('click', decrease);
+        resetBtn.addEventListener('click', resetApp);
 
         updateDisplay(); // Update the screen immediately on load
 
