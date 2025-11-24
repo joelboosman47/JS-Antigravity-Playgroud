@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+        }
+
+        .choices {
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            height: 50px;
+            /* Prevent jumping */
+        }
+
+        .score-board {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Rock Paper Scissors</h1>
+
+    <div class="score-board">
+        Player: <span id="user-score">0</span> | Computer: <span id="comp-score">0</span>
+    </div>
+
+    <div class="choices" style="margin-top: 2rem;">
+        <button id="rock">✊ Rock</button>
+        <button id="paper">✋ Paper</button>
+        <button id="scissors">✌️ Scissors</button>
+    </div>
+
+    <div id="result">Choose your weapon!</div>
+
+    <script>
+        // --- YOUR CODE WILL GO HERE ---
+        // We will write this together, step by step.
+
+        // Step 1: Select elements
+        const userScoreSpan = document.getElementById('user-score');
+        const compScoreSpan = document.getElementById('comp-score');
+        const resultDiv = document.getElementById('result');
+
+        // Step 2: Define State
+        let userScore = 0;
+        let compScore = 0;
+
+        // Step 3: The Logic
+        //The functions() (i.e. actions)
+        function computerPlay() {
+            const choices = ['rock', 'paper', 'scissors'];
+            let randomIndex = Math.floor(Math.random() * choices.length);
+            let computerChoice = choices[randomIndex];
+            return computerChoice; // Returns the computer's choice
+        }
+
+        console.log(computerPlay());
+
+    </script>
+</body>
+
+</html>
