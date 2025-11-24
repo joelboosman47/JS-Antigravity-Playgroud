@@ -99,7 +99,24 @@
             return computerChoice; // Returns the computer's choice
         }
 
-        console.log(computerPlay());
+        function playRound(userChoice, compChoice) {
+            // 1. Tie
+            if (userChoice === compChoice) {
+                return 0;
+            }
+
+            // 2. User Wins
+            if (
+                (userChoice === 'rock' && compChoice === 'scissors') ||
+                (userChoice === 'paper' && compChoice === 'rock') ||
+                (userChoice === 'scissors' && compChoice === 'paper')
+            ) {
+                return 1;
+            }
+
+            // 3. Computer Wins
+            return -1;
+        }
 
     </script>
 </body>
