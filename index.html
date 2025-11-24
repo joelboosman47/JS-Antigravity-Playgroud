@@ -113,8 +113,17 @@
         // 3. Define the functions (actions)
 
         function updateDisplay() {
-            // Update the text on the screen to match our variable
+            // 1. Update the text
             displayElement.innerText = count;
+
+            // 2. The Logic (Decision Making)
+            if (count > 0) {
+                displayElement.style.color = '#2ed573'; // Turn Green
+            } else if (count < 0) {
+                displayElement.style.color = '#ff4757'; // Turn Red
+            } else {
+                displayElement.style.color = 'white';   // Reset to White
+            }
         }
 
         function increase() {
