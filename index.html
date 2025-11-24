@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Counter</title>
+    <style>
+        /* CSS: The Style */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f 0%, #2d2d44 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #a5a5c5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #count-display {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #btn-decrease {
+            background-color: #ff4757;
+            color: white;
+        }
+
+        #btn-decrease:hover {
+            background-color: #ff6b81;
+            box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+        }
+
+        #btn-increase {
+            background-color: #2ed573;
+            color: white;
+        }
+
+        #btn-increase:hover {
+            background-color: #7bed9f;
+            box-shadow: 0 0 15px rgba(46, 213, 115, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Interactive Counter</h1>
+        <div id="count-display">0</div>
+        
+        <div class="button-group">
+            <button id="btn-decrease">Decrease</button>
+            <button id="btn-increase">Increase</button>
+        </div>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT: The Logic ---
+
+        // 1. Select the elements we want to interact with
+        // We find them by their ID, just like looking up a name in a phonebook.
+        const displayElement = document.getElementById('count-display');
+        const increaseBtn = document.getElementById('btn-increase');
+        const decreaseBtn = document.getElementById('btn-decrease');
+
+        // 2. Define our state (data)
+        // This variable holds the current number.
+        let count = 0;
+
+        // 3. Define the functions (actions)
+        
+        function updateDisplay() {
+            // Update the text on the screen to match our variable
+            displayElement.innerText = count;
+        }
+
+        function increase() {
+            count = count + 1; // Add 1 to the count
+            updateDisplay();   // Refresh the screen
+        }
+
+        function decrease() {
+            count = count - 1; // Subtract 1 from the count
+            updateDisplay();   // Refresh the screen
+        }
+
+        // 4. Add Event Listeners (waiting for user input)
+        // When the user clicks a button, run the specific function.
+        increaseBtn.addEventListener('click', increase);
+        decreaseBtn.addEventListener('click', decrease);
+
+    </script>
+</body>
+</html>
