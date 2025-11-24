@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,12 +84,13 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h1>Interactive Counter</h1>
         <div id="count-display">0</div>
-        
+
         <div class="button-group">
             <button id="btn-decrease">Decrease</button>
             <button id="btn-increase">Increase</button>
@@ -109,19 +111,19 @@
         let count = 0;
 
         // 3. Define the functions (actions)
-        
+
         function updateDisplay() {
             // Update the text on the screen to match our variable
             displayElement.innerText = count;
         }
 
         function increase() {
-            count = count + 1; // Add 1 to the count
+            count = count + 5; // Add 1 to the count
             updateDisplay();   // Refresh the screen
         }
 
         function decrease() {
-            count = count - 1; // Subtract 1 from the count
+            count = count - 5; // Subtract 1 from the count
             updateDisplay();   // Refresh the screen
         }
 
@@ -132,4 +134,5 @@
 
     </script>
 </body>
+
 </html>
