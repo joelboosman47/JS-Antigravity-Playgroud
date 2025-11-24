@@ -112,14 +112,16 @@
 
         // 2. Define our state (data)
         // This variable holds the current number.
-        let count = 0;
+        // Try to get the saved number. If it doesn't exist (null), use 0.
+        let saved = localStorage.getItem('mySavedCount');
+        let count = saved ? parseInt(saved) : 0;
         let history = [];
         const historyElement = document.getElementById('history-list');
 
         // 3. Define the functions (actions)
 
         function updateHistory() {
-            history.push(count); // 1. Add the current count to the end of the list
+            history.push(count);                            // 1. Add the current count to the end of the list
             historyElement.innerText = history.join(' → '); // 2. Show it on screen, separated by arrows
         }
 
@@ -141,12 +143,14 @@
             count = count + 1; // Add 1 to the count
             updateDisplay();   // Refresh the screen
             updateHistory();   // Add to history
+            localStorage.setItem('mySavedCount', count); // Save the new count
         }
 
         function decrease() {
             count = count - 1; // Subtract 1 from the count
             updateDisplay();   // Refresh the screen
             updateHistory();   // Add to history
+            localStorage.setItem('mySavedCount', count); // Save the new count
         }
 
         // 4. Add Event Listeners (waiting for user input)
@@ -154,6 +158,7 @@
         increaseBtn.addEventListener('click', increase);
         decreaseBtn.addEventListener('click', decrease);
 
+        updateDisplay(); // Update the screen immediately on load
     </script>
 </body>
 
