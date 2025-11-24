@@ -95,6 +95,10 @@
             <button id="btn-decrease">Decrease</button>
             <button id="btn-increase">Increase</button>
         </div>
+        <div style="margin-top: 2rem; color: #a5a5c5;">
+            <h3>History</h3>
+            <div id="history-list">Start</div>
+        </div>
     </div>
 
     <script>
@@ -109,8 +113,15 @@
         // 2. Define our state (data)
         // This variable holds the current number.
         let count = 0;
+        let history = [];
+        const historyElement = document.getElementById('history-list');
 
         // 3. Define the functions (actions)
+
+        function updateHistory() {
+            history.push(count); // 1. Add the current count to the end of the list
+            historyElement.innerText = history.join(' → '); // 2. Show it on screen, separated by arrows
+        }
 
         function updateDisplay() {
             // 1. Update the text
@@ -127,13 +138,15 @@
         }
 
         function increase() {
-            count = count + 5; // Add 1 to the count
+            count = count + 1; // Add 1 to the count
             updateDisplay();   // Refresh the screen
+            updateHistory();   // Add to history
         }
 
         function decrease() {
-            count = count - 5; // Subtract 1 from the count
+            count = count - 1; // Subtract 1 from the count
             updateDisplay();   // Refresh the screen
+            updateHistory();   // Add to history
         }
 
         // 4. Add Event Listeners (waiting for user input)
