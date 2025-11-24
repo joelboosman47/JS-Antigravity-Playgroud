@@ -111,18 +111,22 @@
         const decreaseBtn = document.getElementById('btn-decrease');
 
         // 2. Define our state (data)
-        // This variable holds the current number.
         // Try to get the saved number. If it doesn't exist (null), use 0.
         let saved = localStorage.getItem('mySavedCount');
-        let count = saved ? parseInt(saved) : 0;
-        let history = [];
+        let count = saved ? parseInt(saved) : 0; // This variable holds the current number.
+        // Try to get the saved history. If it doesn't exist (null), use an empty array.
+        let savedHistory = localStorage.getItem('mySavedHistory');
+        let history = savedHistory ? JSON.parse(savedHistory) : [];
+        // This variable holds the history of numbers.
         const historyElement = document.getElementById('history-list');
 
         // 3. Define the functions (actions)
-
         function updateHistory() {
             history.push(count);                            // 1. Add the current count to the end of the list
             historyElement.innerText = history.join(' → '); // 2. Show it on screen, separated by arrows
+
+            // Save the list as a JSON string
+            localStorage.setItem('mySavedHistory', JSON.stringify(history));
         }
 
         function updateDisplay() {
@@ -159,6 +163,11 @@
         decreaseBtn.addEventListener('click', decrease);
 
         updateDisplay(); // Update the screen immediately on load
+
+        // If we have history, show it
+        if (history.length > 0) {
+            historyElement.innerText = history.join(' → ');
+        }
     </script>
 </body>
 
