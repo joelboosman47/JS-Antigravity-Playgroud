@@ -123,17 +123,17 @@
         rockBtn.addEventListener('click', () => {
             const userChoice = 'rock';
             const compChoice = computerPlay();
-            console.log('User Choice:', userChoice);
-            console.log('Computer Choice:', compChoice);
-            let result;
-            if (playRound(userChoice, compChoice) === 1) {
-                result = 'You win!';
-            } else if (playRound(userChoice, compChoice) === -1) {
-                result = 'You lose!';
+            let result = playRound(userChoice, compChoice);
+            if (result === 1) {
+                resultDiv.textContent = 'You win!';
+                resultDiv.style.color = 'green';
+            } else if (result === -1) {
+                resultDiv.textContent = 'You lose!';
+                resultDiv.style.color = 'red';
             } else {
-                result = 'Tie!';
+                resultDiv.textContent = 'Tie!';
+                resultDiv.style.color = 'yellow';
             }
-            console.log(result);
         });
 
     </script>
